@@ -10,6 +10,10 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var defaultTip: UISegmentedControl!
+    @IBOutlet weak var defaultTheme: UISegmentedControl!
+    @IBOutlet weak var defaultCurrency: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

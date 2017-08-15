@@ -170,6 +170,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="defaultCurrency" destination="br7-LL-W3l" id="cgw-Co-J20"/>
+                        <outlet property="defaultTheme" destination="KLt-0v-1eI" id="Qf7-x3-3MH"/>
+                        <outlet property="defaultTip" destination="cDR-rS-y2h" id="JBm-Qn-cES"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rha-7b-ofU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
