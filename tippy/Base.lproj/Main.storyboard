@@ -121,7 +121,7 @@
                         <viewControllerLayoutGuide type="top" id="Wef-rx-agU"/>
                         <viewControllerLayoutGuide type="bottom" id="gGf-hO-uBC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rvO-s4-dsa" userLabel="SettingsViewController" customClass="Sett">
+                    <view key="view" contentMode="scaleToFill" id="rvO-s4-dsa" userLabel="SettingsViewController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
