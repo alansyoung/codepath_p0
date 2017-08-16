@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnZ-LU-Wbi">
-                                <rect key="frame" x="52" y="262" width="38" height="21"/>
+                                <rect key="frame" x="52" y="261" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -99,9 +99,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="XWG-rN-GqI" id="Idr-Gf-b7M"/>
+                        <outlet property="billTextLabel" destination="4dd-aL-R5j" id="go9-8r-LYR"/>
                         <outlet property="tipControl" destination="yQb-Dy-qKr" id="NQ2-CU-Kgu"/>
                         <outlet property="tipLabel" destination="nvh-cV-LFh" id="qaF-8Y-R7Q"/>
+                        <outlet property="tipTextLabel" destination="SO5-T2-ntT" id="mXt-4M-oZU"/>
                         <outlet property="totalLabel" destination="nWs-uL-uxl" id="cdw-Vc-eit"/>
+                        <outlet property="totalTextLabel" destination="TnZ-LU-Wbi" id="ay8-P5-RNo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -154,6 +157,9 @@
                                     <segment title="20%"/>
                                     <segment title="25%"/>
                                 </segments>
+                                <connections>
+                                    <action selector="setTip:" destination="3w6-WG-N5F" eventType="valueChanged" id="CGc-tQ-cWq"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KLt-0v-1eI">
                                 <rect key="frame" x="221" y="195" width="121" height="29"/>
@@ -162,6 +168,9 @@
                                     <segment title="Light"/>
                                     <segment title="Dark"/>
                                 </segments>
+                                <connections>
+                                    <action selector="setTheme:" destination="3w6-WG-N5F" eventType="valueChanged" id="TXx-Jk-QqE"/>
+                                </connections>
                             </segmentedControl>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="br7-LL-W3l">
                                 <rect key="frame" x="195" y="244" width="147" height="137"/>

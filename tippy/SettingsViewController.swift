@@ -18,6 +18,20 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // load defaults, if not set, then initialize
+        let defaults = UserDefaults.standard
+        //let stringValue = defaults.object(forKey: "some_key_that_you_choose") as! String
+        let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
+        let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
+        
+        defaults.set(tipSelection, forKey: "tipIndex")
+        defaults.set(themeSelection, forKey: "themeIndex")
+
+        defaults.synchronize()
+        
+        defaultTip.selectedSegmentIndex = tipSelection
+        defaultTheme.selectedSegmentIndex = themeSelection
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +39,19 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func setTip(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set(defaultTip.selectedSegmentIndex, forKey: "tipIndex")
+        defaults.synchronize()
+        
+    }
+    
+    @IBAction func setTheme(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set(defaultTheme.selectedSegmentIndex, forKey: "themeIndex")
+        defaults.synchronize()
+        
+    }
 
     /*
     // MARK: - Navigation
