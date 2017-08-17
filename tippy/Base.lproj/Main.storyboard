@@ -21,6 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RB0-iv-nys">
+                                <rect key="frame" x="0.0" y="220" width="375" height="447"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-aL-R5j">
                                 <rect key="frame" x="52" y="102" width="23" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,11 +76,6 @@
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="wZm-7J-afb"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RB0-iv-nys">
-                                <rect key="frame" x="52" y="220" width="270" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$0.00" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvh-cV-LFh">
                                 <rect key="frame" x="201" y="167" width="121" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -86,6 +86,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="ail-HU-tdq" appends="YES" id="YrM-fn-r3c"/>
                         </connections>
@@ -100,6 +103,7 @@
                     <connections>
                         <outlet property="billField" destination="XWG-rN-GqI" id="Idr-Gf-b7M"/>
                         <outlet property="billTextLabel" destination="4dd-aL-R5j" id="go9-8r-LYR"/>
+                        <outlet property="bottomHalfView" destination="RB0-iv-nys" id="29g-vn-cBl"/>
                         <outlet property="tipControl" destination="yQb-Dy-qKr" id="NQ2-CU-Kgu"/>
                         <outlet property="tipLabel" destination="nvh-cV-LFh" id="qaF-8Y-R7Q"/>
                         <outlet property="tipTextLabel" destination="SO5-T2-ntT" id="mXt-4M-oZU"/>

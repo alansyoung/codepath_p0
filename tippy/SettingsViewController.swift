@@ -13,24 +13,28 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var defaultTip: UISegmentedControl!
     @IBOutlet weak var defaultTheme: UISegmentedControl!
     @IBOutlet weak var defaultCurrency: UIPickerView!
+    var pickerData: [String] = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         // load defaults, if not set, then initialize
+        pickerData = ["Default", "$", "¥"]
+        
         let defaults = UserDefaults.standard
-        //let stringValue = defaults.object(forKey: "some_key_that_you_choose") as! String
+        let currencySelection = defaults.object(forKey: "currencyCode") ?? "$"
         let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
         let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
         
         defaults.set(tipSelection, forKey: "tipIndex")
         defaults.set(themeSelection, forKey: "themeIndex")
-
+        defaults.set(currencySelection, forKey: "currencyCode")
         defaults.synchronize()
         
         defaultTip.selectedSegmentIndex = tipSelection
         defaultTheme.selectedSegmentIndex = themeSelection
+        //defaultCurrency.setValue(currencySelection, forUndefinedKey: <#T##String#>);
         
     }
 
@@ -49,6 +53,13 @@ class SettingsViewController: UIViewController {
     @IBAction func setTheme(_ sender: Any) {
         let defaults = UserDefaults.standard
         defaults.set(defaultTheme.selectedSegmentIndex, forKey: "themeIndex")
+        defaults.synchronize()
+        
+    }
+    
+    @IBAction func setCurrency(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        //defaults.set(defaultCurrency.selectedRow(inComponent: <#T##Int#>), forKey: "currencyCode")
         defaults.synchronize()
         
     }

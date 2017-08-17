@@ -17,11 +17,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipTextLabel: UILabel!
     @IBOutlet weak var totalTextLabel: UILabel!
     
+    @IBOutlet weak var bottomHalfView: UIView!
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.billField.becomeFirstResponder()
+        self.billField.keyboardType = UIKeyboardType.decimalPad
+        
+        totalTextLabel.isHidden = true
+        totalLabel.isHidden = true
+    
+        let defaults = UserDefaults.standard
+        let billAmt = defaults.string(forKey: "billAmount")
+        billField.text = billAmt
+        
+        if (billAmt != nil) {
+            calculateTip(Any)
+        }
+        
+        //self.view.sendSubview(toBack: bottomHalfView)
         
             }
 
@@ -32,6 +48,8 @@ class ViewController: UIViewController {
 
     @IBAction func calculateTip(_ sender: Any) {
         
+        let defaults = UserDefaults.standard
+        
         let tipPercentages = [0.18, 0.2, 0.25]
         
         let bill = Double(billField.text!) ?? 0
@@ -39,8 +57,20 @@ class ViewController: UIViewController {
         
         let total = bill + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        let currencyCode = defaults.object(forKey: "currencyCode") as! String
+        
+        defaults.set(billField.text! , forKey: "billAmount")
+        defaults.synchronize()
+        
+        tipLabel.text = currencyCode + String(format: "%.2f", tip)
+        totalLabel.text = currencyCode + String(format: "%.2f", total)
+        
+        
+        
+        UIView.animate(withDuration: 0.5) {
+            self.totalTextLabel.isHidden = false
+            self.totalLabel.isHidden = false
+        }
         
     }
 
@@ -54,6 +84,7 @@ class ViewController: UIViewController {
         print("view will appear")
         
         let defaults = UserDefaults.standard
+        let billAmount = defaults.double(forKey: "billAmount") ?? 0
         let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
         let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
         
@@ -62,11 +93,16 @@ class ViewController: UIViewController {
             billTextLabel.textColor = UIColor.white
             tipTextLabel.textColor = UIColor.white
             totalTextLabel.textColor = UIColor.white
+            tipControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: UIControlState.selected)
+      
+
         } else {
             self.view.backgroundColor = UIColor.white
-            billTextLabel.textColor = UIColor.black
-            tipTextLabel.textColor = UIColor.black
-            totalTextLabel.textColor = UIColor.black
+            billTextLabel.textColor = UIColor.blue
+            tipTextLabel.textColor = UIColor.blue
+            totalTextLabel.textColor = UIColor.blue
+            tipControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: UIControlState.selected)
+
         }
         
     }
