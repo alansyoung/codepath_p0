@@ -52,6 +52,7 @@ class ViewController: UIViewController {
     @IBAction func calculateTip(_ sender: Any) {
         
         let defaults = UserDefaults.standard
+        defaults.set(tipControl.selectedSegmentIndex, forKey: "tipIndex")
         
         let tipPercentages = [0.18, 0.2, 0.25]
         
@@ -65,9 +66,13 @@ class ViewController: UIViewController {
         defaults.set(billField.text! , forKey: "billAmount")
         defaults.synchronize()
         
-        tipLabel.text = currencyCode + String(format: "%.2f", tip)
-        totalLabel.text = currencyCode + String(format: "%.2f", total)
+        let separatedTip = NumberFormatter.localizedString(from: NSNumber(value: tip), number: NumberFormatter.Style.currency)
+        //print(separatedTip)
+        let separatedTotal = NumberFormatter.localizedString(from: NSNumber(value: total), number: NumberFormatter.Style.currency)
         
+        tipLabel.text = separatedTip //currencyCode + String(format: "%.2f", tip)
+        
+        totalLabel.text = separatedTotal //currencyCode + String(format: "%.2f", total)
         
         
         UIView.animate(withDuration: 0.5) {
@@ -85,13 +90,15 @@ class ViewController: UIViewController {
     func loadScreen() {
         let defaults = UserDefaults.standard
         let billAmount = defaults.double(forKey: "billAmount") ?? 0
+        let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
+        tipControl.selectedSegmentIndex = tipSelection
         
         let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
-        print("theme: " + String(themeSelection))
+        //print("theme: " + String(themeSelection))
         if (themeSelection != 0) {
-            print("background was \(self.view.backgroundColor)")
+            //print("background was \(self.view.backgroundColor)")
             self.view.backgroundColor = UIColor.darkGray
-            print("background is now \(self.view.backgroundColor)")
+            //print("background is now \(self.view.backgroundColor)")
             
             billTextLabel.textColor = UIColor.white
             tipTextLabel.textColor = UIColor.white
