@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
         self.billField.becomeFirstResponder()
         self.billField.keyboardType = UIKeyboardType.decimalPad
@@ -30,13 +31,15 @@ class ViewController: UIViewController {
         totalLabel.isHidden = true
     
         let defaults = UserDefaults.standard
+        let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
+        tipControl.selectedSegmentIndex = tipSelection
         let billAmt = defaults.string(forKey: "billAmount")
         billField.text = billAmt
         
         if (billAmt != nil) {
             calculateTip(Any)
         }
-        
+
         //self.view.sendSubview(toBack: bottomHalfView)
         
             }
@@ -79,32 +82,41 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("view will appear")
-        
+    func loadScreen() {
         let defaults = UserDefaults.standard
         let billAmount = defaults.double(forKey: "billAmount") ?? 0
-        let tipSelection = defaults.integer(forKey: "tipIndex") ?? 1
-        let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
         
+        let themeSelection = defaults.integer(forKey: "themeIndex") ?? 0
+        print("theme: " + String(themeSelection))
         if (themeSelection != 0) {
+            print("background was \(self.view.backgroundColor)")
             self.view.backgroundColor = UIColor.darkGray
+            print("background is now \(self.view.backgroundColor)")
+            
             billTextLabel.textColor = UIColor.white
             tipTextLabel.textColor = UIColor.white
             totalTextLabel.textColor = UIColor.white
             tipControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: UIControlState.selected)
-      
-
+            
         } else {
             self.view.backgroundColor = UIColor.white
             billTextLabel.textColor = UIColor.blue
             tipTextLabel.textColor = UIColor.blue
             totalTextLabel.textColor = UIColor.blue
             tipControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: UIControlState.selected)
-
+            
         }
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("view will appear")
         
+        loadScreen()
+        let displayLink = CADisplayLink(target: self, selector: #selector(loadScreen))
+        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
